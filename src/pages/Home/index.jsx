@@ -3,13 +3,17 @@ import { BlogItem, Button, Gap } from "../../component";
 import "./home.scss";
 import axios from "axios";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const [dataBlog, setDataBlog] = useState([]);
 
+  const stateGlobal = useSelector((state) => state);
+  console.log("STATE GLOBAL: ", stateGlobal);
+
   useEffect(() => {
     axios
-      .get("http://localhost:4000/v1/blog/posts?page=2&perPage=2")
+      .get("http://localhost:4000/v1/blog/posts/")
       .then((result) => {
         console.log("DATA API", result);
         const responseAPI = result.data;
