@@ -1,11 +1,25 @@
 import { createStore } from "redux";
 
 const initialState = {
-  dataBlog: [],
+  dataBlogs: [],
   name: "Dynno",
 };
 
 const reducer = (state = initialState, action) => {
+  if (action.type === "UPDATE_DATA_BLOG") {
+    return {
+      ...state,
+      dataBlogs: action.payload,
+    };
+  }
+
+  if (action.type === "UPDATE_NAME") {
+    return {
+      ...state,
+      name: "YOHANIS",
+    };
+  }
+
   return state;
 };
 
