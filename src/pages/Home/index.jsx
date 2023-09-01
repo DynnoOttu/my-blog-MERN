@@ -3,22 +3,16 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BlogItem, Button, Gap } from "../../component";
 import "./home.scss";
+import { setDataBlog } from "../../config/redux/action";
 
 const Home = () => {
   const { dataBlog } = useSelector((state) => state.homeReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/v1/blog/posts/")
-      .then((result) => {
-        const responseAPI = result.data;
-        dispatch({ type: "UPDATE_DATA_BLOG", payload: responseAPI.data });
-      })
-      .catch((err) => {
-        console.log("ERROR API", err);
-      });
+    dispatch(setDataBlog());
   }, []);
+
   return (
     <div className="home-page-wrapper">
       <div className="create-wrapper">
